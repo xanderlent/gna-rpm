@@ -1,6 +1,6 @@
 Name:           gna
 Version:        3.0.0
-Release:        %{autorelease}
+Release:        1%{?dist}
 Summary:        Intel GNA (Gaussian & Neural Accelerator) Library 
 
 License:        LGPL-2.1-or-later
@@ -76,4 +76,6 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 # TODO: Does the check part of the docs apply to us? https://docs.fedoraproject.org/en-US/packaging-guidelines/CMake/
 
-%autochangelog
+%changelog
+* Thu Jun 27 2024 Alexander F. Lent <lx@xanderlent.com> - 3.0.0-1
+- Initial package for Intel GNA library v3.0.0
