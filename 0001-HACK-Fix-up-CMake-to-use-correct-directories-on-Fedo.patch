@@ -1,0 +1,52 @@
+From e70e774466bd6de0d2cc6cc4f33bbdc0bc02f90c Mon Sep 17 00:00:00 2001
+From: "Alexander F. Lent" <lx@xanderlent.com>
+Date: Sun, 23 Jun 2024 17:08:09 -0400
+Subject: [PATCH 1/2] HACK: Fix up CMake to use correct directories on Fedora,
+ etc.
+
+TODO: Does this harm the Windows/Android/other Linux builds?
+---
+ src/gna-lib/CMakeLists.txt | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/src/gna-lib/CMakeLists.txt b/src/gna-lib/CMakeLists.txt
+index 4de6619..88cf1ec 100644
+--- a/src/gna-lib/CMakeLists.txt
++++ b/src/gna-lib/CMakeLists.txt
+@@ -431,6 +431,8 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+   endif()
+ endif()
+ 
++include(GNUInstallDirs)
++
+ if (NOT DEFINED CMAKE_INSTALL_BINDIR)
+     set (CMAKE_INSTALL_BINDIR bin)
+ endif()
+@@ -449,7 +451,7 @@ install(TARGETS gna-api EXPORT GnaTargets
+   INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+ 
+ install(FILES ${api_headers}
+-  DESTINATION include/gna${GNA_VERSION_MAJOR})
++  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/gna${GNA_VERSION_MAJOR})
+ 
+ # package version
+ include(CMakePackageConfigHelpers)
+@@ -460,7 +462,7 @@ write_basic_package_version_file(
+ 
+ install(
+   FILES ${CMAKE_CURRENT_BINARY_DIR}/gna-config-version.cmake
+-  DESTINATION lib/cmake/gna${GNA_VERSION_MAJOR})
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gna${GNA_VERSION_MAJOR})
+ 
+ # build directory export
+ export(TARGETS gna-api
+@@ -470,4 +472,4 @@ export(TARGETS gna-api
+ install(EXPORT GnaTargets
+   FILE gna-config.cmake
+   NAMESPACE Gna::
+-  DESTINATION lib/cmake/gna${GNA_VERSION_MAJOR})
+\ No newline at end of file
++  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/gna${GNA_VERSION_MAJOR})
+-- 
+2.45.2
+

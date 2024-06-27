@@ -1,0 +1,39 @@
+From 14e42c249cc2d9332ef32212e4e9cc825b92520f Mon Sep 17 00:00:00 2001
+From: "Alexander F. Lent" <lx@xanderlent.com>
+Date: Wed, 26 Jun 2024 23:32:23 -0400
+Subject: [PATCH 2/2] HACK: Disable debug-symbol stripping for release builds
+
+---
+ src/gna-lib/CMakeLists.txt | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/gna-lib/CMakeLists.txt b/src/gna-lib/CMakeLists.txt
+index 88cf1ec..16d6190 100644
+--- a/src/gna-lib/CMakeLists.txt
++++ b/src/gna-lib/CMakeLists.txt
+@@ -422,14 +422,14 @@ if(${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+ endif()
+ 
+ #strip symbols on linux
+-if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
+-  if(${CMAKE_BUILD_TYPE} STREQUAL "LNX_RELEASE")
+-    add_custom_command(TARGET gna-api POST_BUILD
+-      COMMAND cp $<TARGET_FILE:gna-api> $<TARGET_FILE:gna-api>.dbg
+-      COMMAND strip --only-keep-debug $<TARGET_FILE:gna-api>.dbg
+-      COMMAND strip --strip-unneeded $<TARGET_FILE:gna-api>)
+-  endif()
+-endif()
++#if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
++#  if(${CMAKE_BUILD_TYPE} STREQUAL "LNX_RELEASE")
++#    add_custom_command(TARGET gna-api POST_BUILD
++#      COMMAND cp $<TARGET_FILE:gna-api> $<TARGET_FILE:gna-api>.dbg
++#      COMMAND strip --only-keep-debug $<TARGET_FILE:gna-api>.dbg
++#      COMMAND strip --strip-unneeded $<TARGET_FILE:gna-api>)
++#  endif()
++#endif()
+ 
+ include(GNUInstallDirs)
+ 
+-- 
+2.45.2
+
