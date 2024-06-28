@@ -1,13 +1,13 @@
 Name:           gna
 Version:        3.0.0
-Release:        1%{?dist}
-Summary:        Intel GNA (Gaussian & Neural Accelerator) Library 
+Release:        2%{?dist}
+Summary:        Intel Gaussian & Neural Accelerator Library
 
-License:        LGPL-2.1-or-later
+License:        LGPL-2.1-or-later AND (GPL-2.0-only WITH Linux-syscall-note)
 URL:            https://github.com/intel/gna
 Source0:        %{url}/archive/refs/tags/v%{version}.tar.gz
-Patch0:		0001-HACK-Fix-up-CMake-to-use-correct-directories-on-Fedo.patch
-Patch1:		0002-HACK-Disable-debug-symbol-stripping-for-release-buil.patch
+Patch0:         0001-HACK-Fix-up-CMake-to-use-correct-directories-on-Fedo.patch
+Patch1:         0002-HACK-Disable-debug-symbol-stripping-for-release-buil.patch
 
 # TODO Intel seems to intend for this to be an x86-only library
 ExclusiveArch:  i686 x86_64
@@ -25,11 +25,17 @@ BuildRequires:  make
 Requires:       glibc
 
 %description
-The Intel Gaussian & Neural Accelerator is a low-power neural coprocessor for continuous inference at the edge.
+The Intel Gaussian & Neural Accelerator is a low-power neural co-processor for
+continuous inference at the edge.
 
-When power and performance are critical, the Intel Gaussian & Neural Accelerator (Intel GNA) provides power-efficient, always-on support. Intel GNA is designed to deliver AI speech and audio applications such as neural noise cancellation, while simultaneously freeing up CPU resources for overall system performance and responsiveness.
+When power and performance are critical, the Intel Gaussian & Neural
+Accelerator (Intel GNA) provides power-efficient, always-on support. Intel GNA
+is designed to deliver AI speech and audio applications such as neural noise
+cancellation, while simultaneously freeing up CPU resources for overall system
+performance and responsiveness.
 
-GNA library provides an API to run inference on Intel GNA hardware, as well as in the software execution mode on CPU.
+GNA library provides an API to run inference on Intel GNA hardware, as well as
+in the software execution mode on CPU.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -42,9 +48,9 @@ developing applications that use %{name}.
 
 %prep
 #Cannot use autosetup, because we need to patch into a subdirectory...
-#autosetup keeps mis-applying the patch to CMakeLists.txt in the main dir rather than a subdir
-%setup
-# the arguments to patch tell it to ignore the first directory prefix but keep the rest
+#autosetup was mis-applying the patch to CMakeLists.txt in the main dir
+%setup -q
+# patch args tell it to ignore the first directory prefix but keep the rest
 %patch 0 -p1
 %patch 1 -p1
 
