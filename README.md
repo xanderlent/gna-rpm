@@ -13,4 +13,4 @@ A [kernel module](https://github.com/xanderlent/intel-gna-kmod) is also required
 
 [![Copr build status](https://copr.fedorainfracloud.org/coprs/xanderlent/intel-gna-driver/package/gna/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/xanderlent/intel-gna-driver/package/gna/)
 
-This package is available for use with Fedora Linux and possibly other RPM-based distributions through my Fedora Copr repository, [xanderlent/intel-gna-driver](https://copr.fedorainfracloud.org/coprs/xanderlent/intel-gna-driver). See that page for information on how to install and use this software on Fedora Linux.
+This package is available for use with Fedora Linux and possibly other RPM-based distributions through my Fedora Copr repository, [xanderlent/intel-gna-driver](https://copr.fedorainfracloud.org/coprs/xanderlent/intel-gna-driver). See that page for information on how to install and use this software on Fedora Linux (and possibly other RPM-based distributions).
