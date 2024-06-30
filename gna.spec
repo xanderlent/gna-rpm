@@ -71,6 +71,7 @@ find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
 
 %files
 %license LICENSE
+# TODO: Firgure out how to include README.md from package git as well
 %doc README.md
 %{_libdir}/*.so.*
 
